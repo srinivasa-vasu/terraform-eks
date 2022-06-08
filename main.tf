@@ -77,6 +77,9 @@ data "tls_certificate" "cert" {
 
 data "aws_iam_policy" "yb-access-policy" {
   name = var.yb-iam-policy
+  tags = {
+    kind = "policy"
+  }
 }
 
 resource "aws_eks_cluster" "capa-cp" {
@@ -101,9 +104,9 @@ resource "aws_eks_node_group" "capa-wk" {
   disk_size       = var.disk-size
 
   scaling_config {
-    desired_size = 2
-    max_size     = 2
-    min_size     = 2
+    desired_size = var.desired-size
+    max_size     = var.max-size
+    min_size     = var.min-size
   }
 
   update_config {

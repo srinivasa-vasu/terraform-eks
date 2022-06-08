@@ -53,3 +53,18 @@ variable "disk-size" {
   description = "node group volume size"
   type        = string
 }
+
+variable "min-size" {
+  description = "node group min size"
+  type        = string
+}
+
+variable "max-size" {
+  description = "node group max size"
+  type        = string
+}
+
+variable "desired-size" {
+  description = "node group desired size"
+  type        = string
+}
