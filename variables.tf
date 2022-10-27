@@ -68,3 +68,25 @@ variable "desired-size" {
   description = "node group desired size"
   type        = string
 }
+
+variable "addons" {
+  type = list(object({
+    name = string
+    # version = string
+  }))
+
+  default = [
+    {
+      name = "kube-proxy"
+    },
+    {
+      name = "vpc-cni"
+    },
+    {
+      name = "coredns"
+    },
+    {
+      name = "aws-ebs-csi-driver"
+    }
+  ]
+}

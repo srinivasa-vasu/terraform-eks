@@ -131,6 +131,13 @@ resource "aws_iam_policy_attachment" "yb-policy-attach" {
   policy_arn = data.aws_iam_policy.yb-access-policy.arn
 }
 
+resource "aws_eks_addon" "addons" {
+  cluster_name      = aws_eks_cluster.capa-cp.name
+  for_each          = { for addon in var.addons : addon.name => addon }
+  addon_name        = each.value.name
+  resolve_conflicts = "NONE"
+}
+
 locals {
   kubeconfig = <<KUBECONFIG
 
